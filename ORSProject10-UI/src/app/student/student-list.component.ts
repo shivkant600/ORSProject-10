@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { BaseCtl } from '../base.component';
+import { BaseListCtl } from '../base-list.component';
 import { ServiceLocatorService } from '../service-locator.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-role',
-  templateUrl: './role.component.html',
+  selector: 'app-student-list',
+  templateUrl: './student-list.component.html',
   
 })
-export class RoleComponent extends BaseCtl {
+export class StudentListComponent extends BaseListCtl{
   constructor(public locator:ServiceLocatorService,route:ActivatedRoute){
-    super(locator.endpoints.ROLE,locator,route);
+    super(locator.endpoints.STUDENT,locator,route);
+
   }
+
 
 }

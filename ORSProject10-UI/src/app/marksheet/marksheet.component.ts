@@ -4,13 +4,13 @@ import { BaseCtl } from '../base.component';
 import { ServiceLocatorService } from '../service-locator.service';
 
 @Component({
-  selector: 'app-college',
-  templateUrl: './college.component.html'
+  selector: 'app-marksheet',
+  templateUrl: './marksheet.component.html'
 })
-export class CollegeComponent extends BaseCtl {
+export class MarksheetComponent extends BaseCtl {
 
   constructor(public locator: ServiceLocatorService, route: ActivatedRoute) {
-    super(locator.endpoints.COLLEGE, locator, route);
+    super(locator.endpoints.MARKSHEET, locator, route);
   }
 
 }

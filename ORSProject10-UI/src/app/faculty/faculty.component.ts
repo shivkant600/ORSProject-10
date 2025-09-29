@@ -4,13 +4,14 @@ import { ServiceLocatorService } from '../service-locator.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-role',
-  templateUrl: './role.component.html',
+  selector: 'app-faculty',
+  templateUrl: './faculty.component.html',
   
 })
-export class RoleComponent extends BaseCtl {
+export class FacultyComponent  extends BaseCtl{
   constructor(public locator:ServiceLocatorService,route:ActivatedRoute){
-    super(locator.endpoints.ROLE,locator,route);
+    super(locator.endpoints.FACULTY,locator,route);
+
   }
 
 }

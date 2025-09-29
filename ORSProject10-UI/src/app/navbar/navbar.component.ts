@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpServiceService } from '../http-service.service';
+import { ServiceLocatorService } from '../service-locator.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
 
@@ -15,7 +16,16 @@ export class NavbarComponent {
     data: {}
   }
 
-  constructor(private httpService: HttpServiceService, private router: Router) { }
+  constructor(private translate: TranslateService, private httpService: HttpServiceService, private router: Router, private servicelocator: ServiceLocatorService) {
+    const locale = localStorage.getItem("locale") || 'en';
+    translate.setDefaultLang(locale);
+    translate.use(locale);
+  }
+
+  changeLocale(locale: string) {
+    localStorage.setItem("locale", locale);
+    this.translate.use(locale);
+  }
 
   isLogin() {
     let check = localStorage.getItem('fname');
@@ -34,5 +44,10 @@ export class NavbarComponent {
       localStorage.clear();
       _self.router.navigateByUrl('login')
     });
+  }
+
+  forward() {
+    this.form.data.userId = localStorage.getItem("userId");
+    this.servicelocator.forward("/myprofile/" + this.form.data.userId);
   }
 }
