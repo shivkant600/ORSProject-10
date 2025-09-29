@@ -195,4 +195,10 @@ public class UserDTO extends BaseDTO {
 	public String getLabel() {
 		return "Login Id";
 	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "User";
+	}
 }

@@ -107,16 +107,22 @@ public class TimeTableDTO extends BaseDTO {
 
 	@Override
 	public String getUniqueKey() {
-		return null;
+		return "subjectName";
 	}
 
 	@Override
 	public String getUniqueValue() {
-		return null;
+		return subjectName;
 	}
 
 	@Override
 	public String getLabel() {
-		return null;
+		return "Subject Name";
+	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "TimeTable";
 	}
 }

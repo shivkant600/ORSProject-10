@@ -82,7 +82,7 @@ public class LoginCtl extends BaseCtl<UserForm, UserDTO, UserServiceInt> {
 			res.setSuccess(true);
 			res.addData(dto);
 			res.addResult("fname", dto.getFirstName());
-			//res.addResult("loginId", dto.getLoginId());
+			res.addResult("loginId", dto.getLoginId());
 			res.addResult("role", dto.getRoleName());
 			
 			return res;

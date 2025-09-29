@@ -175,4 +175,10 @@ public class FacultyDTO extends BaseDTO {
 	public String getLabel() {
 		return "Email";
 	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "Faculty";
+	}
 }

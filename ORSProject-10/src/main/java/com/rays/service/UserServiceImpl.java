@@ -50,4 +50,18 @@ public class UserServiceImpl extends BaseServiceImpl<UserDTO, UserDAOInt> implem
 		}
 		return null;
 	}
+
+	@Override
+	public UserDTO changePassword(String loginId, String oldPassword, String newPassword, UserContext userContext) {
+
+		UserDTO dto = findByLoginId(loginId, null);
+
+		if (dto != null && oldPassword.equals(dto.getPassword())) {
+			dto.setPassword(newPassword);
+			update(dto, userContext);
+			return dto;
+		} else {
+			return null;
+		}
+	}
 }

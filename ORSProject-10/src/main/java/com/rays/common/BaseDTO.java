@@ -36,6 +36,8 @@ public abstract class BaseDTO implements DropdownList{
 	public abstract String getUniqueValue();
 
 	public abstract String getLabel();
+	
+	public abstract String getTableName();
 
 
 	public Long getId() {
@@ -80,7 +82,7 @@ public abstract class BaseDTO implements DropdownList{
 
 	@Override
 	public String getKey() {
-		return id+"";
+		return String.valueOf(id);
 	}
 
 	

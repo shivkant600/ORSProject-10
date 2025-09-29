@@ -1,5 +1,6 @@
 package com.rays.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +18,10 @@ import com.rays.dto.StudentDTO;
 @Repository
 public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDAOInt {
 
+	
+	@Autowired
+	CollegeDAOInt collegeService = null;
+
 	@Override
 	public Class<StudentDTO> getDTOClass() {
 		// TODO Auto-generated method stub
@@ -25,13 +30,22 @@ public class StudentDAOImpl extends BaseDAOImpl<StudentDTO> implements StudentDA
 
 	@Override
 	protected List<Predicate> getWhereClause(StudentDTO dto, CriteriaBuilder builder, Root<StudentDTO> qRoot) {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<Predicate> whereCondition = new ArrayList<Predicate>();
+
+		if (!isEmptyString(dto.getFirstName())) {
+
+			whereCondition.add(builder.like(qRoot.get("firstName"), dto.getFirstName() + "%"));
+		}
+
+		if (!isEmptyString(dto.getCollegeName())) {
+
+			whereCondition.add(builder.like(qRoot.get("collegeName"), dto.getCollegeName() + "%"));
+		}
+		return whereCondition;
 	}
 
-	@Autowired
-	CollegeDAOInt collegeService = null;
-
+	
 	@Override
 	protected void populate(StudentDTO dto, UserContext userContext) {
 		CollegeDTO collegeDTO = collegeService.findByPK(dto.getCollegeId(), userContext);

@@ -115,6 +115,8 @@ public class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends BaseServic
 		}
 		return res;
 	}
+	
+	
 
 	@PostMapping("deleteMany/{ids}")
 	public ORSResponse deleteMany(@PathVariable String[] ids, @RequestParam("pageNo") String pageNo,
@@ -148,8 +150,14 @@ public class BaseCtl<F extends BaseForm, T extends BaseDTO, S extends BaseServic
 		T dto = (T) form.getDto();
 
 		ORSResponse res = new ORSResponse(true);
+		/*
+		 * List list = baseService.search(dto, pageSize,pageNo,userContext);
+		 * 
+		 * if(list.size()==0) { res.setSuccess(false);
+		 * res.addMessage("record not found..!!"); }else { res.addData(list); }
+		 */
 
-		res.addData(baseService.search(dto, pageNo, pageSize, userContext));
+	res.addData(baseService.search(dto, pageNo, pageSize, userContext));
 
 		return res;
 	}

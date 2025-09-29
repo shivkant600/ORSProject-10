@@ -72,4 +72,10 @@ public class SubjectDTO extends BaseDTO {
 	public String getLabel() {
 		return "Subject Name";
 	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "Subject";
+	}
 }

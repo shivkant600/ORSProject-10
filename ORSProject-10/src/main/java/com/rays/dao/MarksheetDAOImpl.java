@@ -1,5 +1,6 @@
 package com.rays.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -24,7 +25,13 @@ public class MarksheetDAOImpl extends BaseDAOImpl<MarksheetDTO> implements Marks
 
 	@Override
 	protected List<Predicate> getWhereClause(MarksheetDTO dto, CriteriaBuilder builder, Root<MarksheetDTO> qRoot) {
-		return null;
+		List<Predicate> whereCondition = new ArrayList<Predicate>();
+
+		if (!isEmptyString(dto.getName())) {
+
+			whereCondition.add(builder.like(qRoot.get("name"), dto.getName() + "%"));
+		}
+		return whereCondition;
 	}
 
 	@Autowired

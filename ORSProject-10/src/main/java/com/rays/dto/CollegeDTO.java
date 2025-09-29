@@ -85,4 +85,10 @@ public class CollegeDTO extends BaseDTO {
 	public String getLabel() {
 		return "College Name";
 	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "College";
+	}
 }

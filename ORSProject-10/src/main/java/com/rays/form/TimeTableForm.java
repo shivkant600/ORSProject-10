@@ -1,8 +1,8 @@
-
 package com.rays.form;
 
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -12,49 +12,35 @@ import com.rays.dto.TimeTableDTO;
 
 public class TimeTableForm extends BaseForm {
 
-	@NotNull
-	private Long subjectId;
-
-	private String subjectName;
-
-	@NotNull
-	private Long courseId;
+	@NotNull(message = "Course is required")
+	@Min(1)
+	private Long courseId = 0L;
 
 	private String courseName;
 
-	@NotNull
+	@NotNull(message = "Subject is required")
+	@Min(1)
+	private Long subjectId = 0L;
+
+	private String subjectName;
+
+	@NotNull(message = "Exam Date is required")
 	private Date examDate;
 
-	@NotEmpty(message = "please enter description")
-	private String description;
-
-	@NotEmpty(message = "please enter semester")
-	private String semester;
-
-	@NotEmpty(message = "please enter examTime")
+	@NotEmpty(message = "Exam Time is required")
 	private String examTime;
 
-	public Long getSubjectId() {
-		return subjectId;
-	}
+	@NotEmpty(message = "Semester is required")
+	private String semester;
 
-	public void setSubjectId(Long subjectId) {
-		this.subjectId = subjectId;
-	}
+	@NotEmpty(message = "Description is required")
+	private String description;
 
-	public String getSubjectName() {
-		return subjectName;
-	}
-
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
-	}
-
-	public Long getCourseId() {
+	public long getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(Long courseId) {
+	public void setCourseId(long courseId) {
 		this.courseId = courseId;
 	}
 
@@ -66,28 +52,28 @@ public class TimeTableForm extends BaseForm {
 		this.courseName = courseName;
 	}
 
+	public long getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(long subjectId) {
+		this.subjectId = subjectId;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
 	public Date getExamDate() {
 		return examDate;
 	}
 
 	public void setExamDate(Date examDate) {
 		this.examDate = examDate;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getSemester() {
-		return semester;
-	}
-
-	public void setSemester(String semester) {
-		this.semester = semester;
 	}
 
 	public String getExamTime() {
@@ -98,18 +84,34 @@ public class TimeTableForm extends BaseForm {
 		this.examTime = examTime;
 	}
 
+	public String getSemester() {
+		return semester;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	@Override
 	public BaseDTO getDto() {
 
 		TimeTableDTO dto = initDTO(new TimeTableDTO());
-		dto.setSubjectId(subjectId);
-		dto.setSubjectName(subjectName);
 		dto.setCourseId(courseId);
 		dto.setCourseName(courseName);
+		dto.setSubjectId(subjectId);
+		dto.setSubjectName(subjectName);
 		dto.setExamDate(examDate);
-		dto.setDescription(description);
-		dto.setSemester(semester);
 		dto.setExamTime(examTime);
+		dto.setSemester(semester);
+		dto.setDescription(description);
 
 		return dto;
 	}

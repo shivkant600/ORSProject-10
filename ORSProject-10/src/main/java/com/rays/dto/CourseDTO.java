@@ -63,4 +63,10 @@ public class CourseDTO extends BaseDTO {
 	public String getLabel() {
 		return "Course Name";
 	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "Course";
+	}
 }

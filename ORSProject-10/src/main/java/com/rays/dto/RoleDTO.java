@@ -79,4 +79,10 @@ public class RoleDTO extends BaseDTO {
 	public String getLabel() {
 		return "Role Name";
 	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "Role";
+	}
 }

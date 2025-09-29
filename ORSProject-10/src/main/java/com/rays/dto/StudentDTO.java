@@ -120,4 +120,10 @@ public class StudentDTO extends BaseDTO {
 	public String getLabel() {
 		return "Enroll No";
 	}
+
+	@Override
+	public String getTableName() {
+		// TODO Auto-generated method stub
+		return "Student";
+	}
 }

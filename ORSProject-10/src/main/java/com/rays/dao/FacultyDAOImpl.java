@@ -1,5 +1,6 @@
 package com.rays.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -26,7 +27,21 @@ public class FacultyDAOImpl extends BaseDAOImpl<FacultyDTO> implements FacultyDA
 
 	@Override
 	protected List<Predicate> getWhereClause(FacultyDTO dto, CriteriaBuilder builder, Root<FacultyDTO> qRoot) {
-		return null;
+		List<Predicate> whereCondition = new ArrayList<Predicate>();
+		
+		if (!isEmptyString(dto.getFirstName())) {
+
+			whereCondition.add(builder.like(qRoot.get("firstName"), dto.getFirstName() + "%"));
+		}
+		
+		if (!isEmptyString(dto.getEmail())) {
+
+			whereCondition.add(builder.like(qRoot.get("email"), dto.getEmail() + "%"));
+		}
+
+		
+		
+		return whereCondition;
 	}
 	@Autowired
 	CollegeDAOInt collegeDao;

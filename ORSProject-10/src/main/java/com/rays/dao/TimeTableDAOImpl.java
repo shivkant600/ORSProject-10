@@ -1,5 +1,6 @@
 package com.rays.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -25,7 +26,15 @@ public class TimeTableDAOImpl extends BaseDAOImpl<TimeTableDTO> implements TimeT
 
 	@Override
 	protected List<Predicate> getWhereClause(TimeTableDTO dto, CriteriaBuilder builder, Root<TimeTableDTO> qRoot) {
-		return null;
+		List<Predicate> whereCondition = new ArrayList<Predicate>();
+		
+		
+		if (!isEmptyString(dto.getCourseName())) {
+
+			whereCondition.add(builder.like(qRoot.get("courseName"), dto.getCourseName() + "%"));
+		}
+
+		return whereCondition;
 	}
 
 	@Autowired

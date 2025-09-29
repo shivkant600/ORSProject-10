@@ -1,5 +1,6 @@
 package com.rays.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,7 +22,14 @@ public class CourseDAOImpl extends BaseDAOImpl<CourseDTO> implements CourseDAOIn
 
 	@Override
 	protected List<Predicate> getWhereClause(CourseDTO dto, CriteriaBuilder builder, Root<CourseDTO> qRoot) {
-		return null;
+		
+		List<Predicate> whereCondition = new ArrayList<Predicate>();
+		
+		if (!isEmptyString(dto.getName())) {
+
+			whereCondition.add(builder.like(qRoot.get("name"), dto.getName() + "%"));
+		}
+		return whereCondition;
 	}
 
 }
